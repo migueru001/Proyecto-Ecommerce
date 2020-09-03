@@ -153,3 +153,13 @@ console.info( "La categoria de juegos de Horror es " + JuegosHorror);
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------
+
+//Desafio del DOM Igual estoy viendo los after class grabados para poder armar el carrito....
+
+function Mostrar() {
+    document.getElementById('CarrucelCompleto').style.display="block";
+}
+
+function Ocultar() {
+    document.getElementById('CarrucelCompleto').style.display="none";
+}

@@ -9,6 +9,7 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="css/bootstrap-4.3.1.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7f977d656f.js" crossorigin="anonymous"></script>
     <script defer src="js/main.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -17,42 +18,54 @@
     <script src="js/bootstrap-4.3.1.js"></script>
   </head>
   <body>
-    <header style="background-color: black;padding-top: 10px;padding-bottom: 10px;">
-      <div class="container d-flex justify-content-between">
-        <div class="row col-6">
+    <header style="background-color: black;padding-top: 30px;padding-bottom: 10px;">
+      <div class="container d-flex justify-content-between" style="background-color: black;">
+        <div class="row col-10" style="background-color: black;">
           <img alt="Logo Pirate" class="img-fluid" src="images/Piratas-logo.png" width="250px">
         </div>
-        <div class="row col-6 d-flex justify-content-end align-items-center">
-          <h5 class="texto_header" style="color: white;padding-right: 10px;">Videogames & More</h3>
+
+        <div class="row col-2 d-flex justify-content-end align-items-center">
+          <button type="button" class="btn btn-warning"><img src="images/supermarket.svg" alt="Car_icon" width="26px" height="26px"></button>
+        </div>
+      </div>
+      <div class="Buscador" style="background-color: black;">
+        <div class="container" style="padding-top:40px;padding-bottom: 20px;">
+          <div class="container">
+            <div class="row">
+              <div class="input-group md-form form-sm form-2 pl-0">
+                <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Buscar Artículos" aria-label="Search" style="padding-left: 20px;">
+                <div class="input-group-append">
+                  <button class="input-group-text amber lighten-3 bg-warning" id="basic-text1" ><i class="fas fa-search"
+                      aria-hidden="true" style="color: black;"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </header>
-    
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: orange;">
-      <div class="container">
-        <a class="navbar-brand text-dark" href="#" style="font-weight:700;">Carrito</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-dark" href="#" style="font-weight:700;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item text-dark" href="#" style="font-weight:700;">Consolas PS4</a>
-                <a class="dropdown-item text-dark" href="#" style="font-weight:700;">Juegos PS4</a>
-                <a class="dropdown-item text-dark" href="#" style="font-weight:700;">Accesorios PS4</a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar Articulo" aria-label="Search">
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Buscar</button>
-          </form>
+    <nav style="background-color: orange;">
+        <div class="container">
+          <div class="navbar navbar-expand-lg navbar-light" style="background-color: orange;">
+            <button id="navbar-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-dark" href="#" style="font-weight:700;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nuestros Productos</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item text-dark" href="#" style="font-weight:700;">Consolas PS4</a>
+                    <a class="dropdown-item text-dark" href="#" style="font-weight:700;">Juegos PS4</a>
+                    <a class="dropdown-item text-dark" href="#" style="font-weight:700;">Accesorios PS4</a>
+                    <a class="dropdown-item text-dark" href="#" style="font-weight:700;">Mochilas y Remeras</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
     </nav>
-    
-    <section class="bg-dark">
+    <section id="CarrucelCompleto" class="bg-dark" style="background-image: url('images/playgraphic.png');width: 100%;">
     <br>
     <br>
     <div class="container mt-3 bg">
@@ -103,10 +116,17 @@
     <br>
     </section>
 
+    <section class="d-flex justify-content-center align-items-center" style="height: 100px;background-color: black;">
+
+    <button style="margin-right: 20px;" class="btn btn-warning" type="button" onclick="Ocultar();">Ocultar</button>
+    <button  style="margin-left: 20px;" class="btn btn-warning" type="button" onclick="Mostrar();">Mostrar</button>
+
+    </section>
+   
     <section style="background-color: black">
  
-    <div class="container-fluid" style="background-color: orange; padding:8px ;">
-    <h2 class="text-center">Productos Destacados</h2>
+    <div class="container-fluid d-flex align-items-center justify-content-center" style="background-color: orange; height: 55px;padding-top: 10px;">
+    <h4 class="text-center">Productos Destacados</h4>
     </div>
     <br>
     <br>
@@ -128,7 +148,7 @@
               <img class="rounded-circle" alt="Free Shipping" src="images/002-botones.png">
             </div>
             <div class="col-12 text-center">
-              <button class="btn btn-outline-warning btn-sm" type="button">Video Juegos</button>
+              <button class="btn btn-outline-warning btn-sm" type="button">Juegos</button>
             </div>
           </div>
         </div>

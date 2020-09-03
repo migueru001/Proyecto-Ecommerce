@@ -10,3 +10,22 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
+
+.input-group.md-form.form-sm.form-1 input{
+	border: 1px solid orange;
+	border-top-right-radius: 0.25rem;
+	border-bottom-right-radius: 0.25rem;
+  }
+  .input-group.md-form.form-sm.form-2 input {
+	border: 1px solid orange;
+	border-top-left-radius: 0.25rem;
+	border-bottom-left-radius: 0.25rem;
+  }
+  .input-group.md-form.form-sm.form-2 input.amber-border {
+	border: 1px solid orange;
+  }
+
+#navbar-toggler {
+	color: black;
+	border-color: black;
+  }
