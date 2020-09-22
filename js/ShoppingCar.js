@@ -1,15 +1,5 @@
-//Para mostrar o Ocutar Carrito de Compra Inicio
+//Gonza aquí comienza el desafio JQUERY
 
-function MostrarCarrito() {
-    document.getElementById('MostrarOcultarCarrito').style.display="block";
-    document.getElementById('botonCarrito').style.display="none";
-}
-
-function OcultarCarrito() {
-    document.getElementById('MostrarOcultarCarrito').style.display="none";
-    document.getElementById('botonCarrito').style.display="block";
-}
-//Para mostrar o Ocutar Carrito de Compra Fin
 
 //Para Colocar Boton Carrito de Compra flotante JQUERY Inicio
 
@@ -24,6 +14,24 @@ $(document).ready(function(){
         }
     });
 });
+//Para Colocar Boton Carrito de Compra flotante JQUERY Fin
+
+
+//Gonza aquí termina el desafio JQUERY
+
+
+//Para Mostrar u Ocultar Carrito de Compra JQUERY Inicio
+$("#botonCarrito").click(function(){ 
+    $("#MostrarOcultarCarrito").show();
+    $("#botonCarrito").hide(); 
+  });
+  
+$("#botonCerrar").click(function(){ 
+    $("#MostrarOcultarCarrito").hide();
+    $("#botonCarrito").show(); 
+});
+//Para Mostrar u Ocultar Carrito de Compra JQUERY Fin
+
 
 //Para Colocar Boton Carrito de Compra flotante JQUERY Fin
 
