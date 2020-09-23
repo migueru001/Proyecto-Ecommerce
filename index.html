@@ -11,11 +11,8 @@
       <link href="css/style.css" rel="stylesheet">
       <!-- CSS Bootstrap -->
       <link href="css/bootstrap-4.3.1.css" rel="stylesheet">
-      <!-- JS Carrito -->
-      <!--<script defer src="js/ShoppingCar.js"></script>-->
-      <!-- JS ProductosdelJSON -->
-      <script defer src="js/DataBase.js"></script>
-      
+      <!-- JS Principal -->
+      <script defer src="js/main.js"></script>
       <!-- JS Fontawesome -->
       <script src="https://kit.fontawesome.com/7f977d656f.js" crossorigin="anonymous"></script>
       <!-- JS SweetAlert -->
@@ -26,7 +23,7 @@
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap-4.3.1.js"></script>
     </head>
-
+    <button type="button"></button>
     <body>
 
     <header style="background-color: black;padding-top: 30px;padding-bottom: 10px;">
@@ -37,16 +34,21 @@
         </div>
 
         <div class="row col-2 d-flex justify-content-end align-items-center">
-          <button type="button" class="btn btn-warning" onclick="MostrarCarrito()" id="botonCarrito"><img src="images/supermarket.svg" alt="Car_icon" width="26px" height="26px"></button>
+          <p id="Indicador">0</p>
+          <button type="button" class="btn btn-warning"  id="botonCarrito"><img src="images/supermarket.svg" alt="Car_icon" width="26px" height="26px">
+              
+          </button>
         </div>
       </div>
 
       <!-- ----------------------CARRITO DE COMPRA INICIO S--------------------- -->
+      
       <article class="EstiloCarrito" id="MostrarOcultarCarrito">
+
       <div class="container">
         <!-- CARRITO TITULO INICIO-->
         <div style="height: 40px;">
-        <button class="btn btn-sm float-right" onclick="OcultarCarrito()"><img src="images/times-circle-regular.svg" alt="close_icon" width="26px" height="26px"></button>
+        <button class="btn btn-sm float-right"  id="botonCerrar"><img src="images/times-circle-regular.svg" alt="close_icon" width="26px" height="26px"></button>
         </div>
         <div class="d-flex flex-column">
             
@@ -73,8 +75,15 @@
         <!-- CARRITO TITULO FIN-->
         <!-- CARRITO SECCIÓN DONDE SE AGREGAR LOS ARTICULOS INICIO-->
         <div class="shopping-cart-items" id="Articulo-carrito-contenedor">
-
-
+        
+          <div class="CajaAnimacionMostrarOcultar  d-none col-12">
+            <div class="sk-folding-cube">
+              <div class="sk-cube1 sk-cube"></div>
+              <div class="sk-cube2 sk-cube"></div>
+              <div class="sk-cube4 sk-cube"></div>
+              <div class="sk-cube3 sk-cube"></div>
+            </div>
+          </div>
 
         </div>
         <!-- CARRITO SECCIÓN DONDE SE AGREGAR LOS ARTICULOS FIN-->
@@ -88,16 +97,17 @@
             </div>
 
             <div class=" col-6 d-flex align-items-center justify-content-end">
-              <button class="btn btn-warning mr-3 Vaciar" type="button" onclick="CarritoVacio()">Vaciar</button>
-              <button class="btn btn-success comprarButton" type="button" data-toggle="modal" data-target="#comprarModal">Comprar</button>
+              <button class="btn btn-warning mr-3 Vaciar" type="button">Vaciar</button>
+              <button class="btn btn-success ComprarBoton" type="button" data-toggle="modal" data-target="#comprarModal">Comprar</button>
             </div>
             
         </div>
         <!-- CARRITO SUMATORIA FINAL -->
       </div>
       <!-- ----------------------CARRITO DE COMPRA FINAL---------------------- -->
+    
     </article>
-
+    </div>
     </header>
 
     <nav style="background-color: orange;">
