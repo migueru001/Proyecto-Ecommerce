@@ -39,7 +39,7 @@
 	border-radius: 5px;
 	padding: 10px;
 	z-index: 100;
-	top: 120px;
+	top: 5px;
 	-webkit-box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
 	-moz-box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
 	box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
@@ -54,7 +54,7 @@
 .botonCarrito {
 	position: fixed;
 	z-index: 10;
-	top: 20px;
+	top: 40px;
 	-webkit-box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
 	-moz-box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
 	box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
@@ -76,11 +76,11 @@
 	padding-top: 2px;
 	border: 2px solid black;
 	color: rgb(240, 240, 240);
-	
 }
 
+
 .CajaCarrito {
-	height: 415px;
+	height: 320px;
 	background-color: rgb(240, 240, 240);
 	overflow: auto;
 	padding-left: 10px;
@@ -93,7 +93,7 @@
 	background-color:  rgb(240, 240, 240);
 	border-radius: 10px;
 	z-index: 5;
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
 	position: absolute;

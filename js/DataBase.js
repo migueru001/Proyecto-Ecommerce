@@ -5,12 +5,15 @@ $(document).ready(function(){
     $(window).on('scroll', function(){
         if ( $(window).scrollTop() > Altura){
             $('#botonCarrito').addClass('botonCarrito');
+            $('#Indicador').hide();
         }
         else {
             $('#botonCarrito').removeClass('botonCarrito');
+            $('#Indicador').show();
         }
     });
 });
+
 //Para Colocar Boton Carrito de Compra flotante JQUERY Fin
 
 //Para Mostrar u Ocultar Carrito de Compra JQUERY Inicio
@@ -107,19 +110,27 @@ const BotonAgregarAlCarrito = document.getElementsByClassName('Agregar-al-Carrit
 const ArticuloCarritoCotenedor = document.querySelector('#Articulo-carrito-contenedor');
 const BorrarArticulosCarrito = document.querySelector('.Vaciar');
 const BontonDeCompraCarrito = document.querySelector('.ComprarBoton');
+let Contador = document.getElementById('Indicador');
 //Variables Globales Fin
+
+const spinner = document.querySelector('#CajaAnimacionMostrarOcultar');
+    
 
 //Funcion Para Agregar Agregar Articulos al Carrito de Compra Inicio
 
 BorrarArticulosCarrito.addEventListener('click', CarritoVacio );
 BontonDeCompraCarrito.addEventListener('click', CompraCarrito );
 
+
+
 function BotonAgregarAlCarritoClickeado(event) {
+    
     //Contador de Articulos Inicio
-    let Contador = document.getElementById('Indicador');
+    //let Contador = document.getElementById('Indicador');
     let ValorContador = Contador.innerHTML;
     Contador.innerHTML = parseInt(ValorContador) + 1;
     //Contador de Articulos Fin
+
     //Agregar Articulos al Carrito Inicio
     const boton = event.target;
     const Articulo = boton.closest('#Articulo');
@@ -191,8 +202,13 @@ function ActualizacionDelTotalCarritoDeCompra() {
     TotalCarrito.innerHTML = `$${Total.toFixed(2)}`;
 }
 
+
 function RemoverArticuloDelCarrito(event){
     const BotonClickeado = event.target;
+    let CantidadElemento = document.getElementById('Cantidad');
+    let ValorCantidadElemento = Number(CantidadElemento.value);
+    let ContadorTemporal = Contador.innerHTML - ValorCantidadElemento;
+    Contador.innerHTML = ContadorTemporal;
     BotonClickeado.closest('#Articulo-Carrito-compras').remove();
     ActualizacionDelTotalCarritoDeCompra();
 }
@@ -208,17 +224,23 @@ function CambioDeCantidadDeArticulos(event) {
 function CarritoVacio() {
     ArticuloCarritoCotenedor.classList.remove('CajaCarrito');
     ArticuloCarritoCotenedor.innerHTML = '';
+    Contador.innerHTML = '0';
     ActualizacionDelTotalCarritoDeCompra();
 }
 
 function CompraCarrito() {
     ArticuloCarritoCotenedor.classList.remove('CajaCarrito');
-    ArticuloCarritoCotenedor.innerHTML = '';
-    ActualizacionDelTotalCarritoDeCompra();
-    swal('¡Gracias por su compra!', `Pronto recivira su pedido`);  
+        ArticuloCarritoCotenedor.innerHTML = '';
+        Contador.innerHTML = '0';
+        ActualizacionDelTotalCarritoDeCompra();
+        swal('¡Gracias por su compra!', `Pronto recibirá su pedido`); 
+}
+
+function OcultarCarrito() {
+    document.getElementById('MostrarOcultarCarrito').style.display="none";
+    document.getElementById('botonCarrito').style.display="block";
 }
 //Funcion Para Agregar Agregar Articulos al Carrito de Compra Fin
-
 
 
 
