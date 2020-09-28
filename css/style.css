@@ -30,6 +30,10 @@
 	border-color: black;
   }
 
+.LogoPrincipal{
+	width: 250px;
+	height: 100%;
+}
 .EstiloCarrito {
 	display: none;
 	width: 100%;
@@ -51,10 +55,28 @@
 	border: 1px solid  black;
 }
 
-.botonCarrito {
-	position: fixed;
+#botonCarrito {
 	z-index: 10;
-	top: 40px;
+	-webkit-box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
+	-moz-box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
+	box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
+}
+
+#botonPause {
+	height: 40px;
+	width: 40px;
+	border-radius: 25px;
+	z-index: 10;
+	-webkit-box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
+	-moz-box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
+	box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
+}
+
+#botonPlay {
+	height: 40px;
+	width: 40px;
+	border-radius: 25px;
+	z-index: 10;
 	-webkit-box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
 	-moz-box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
 	box-shadow: 6px 9px 19px -9px rgba(0,0,0,0.67);
@@ -63,11 +85,11 @@
 #Indicador {
 	width: 27px;
 	height: 27px;
-	z-index: 10;
+	z-index: 15;
 	background-color:#006efc;
 	border-radius: 20px;
 	position: absolute;
-	top: 20px;
+	top: 8px;
 	right: 1px;
 	display: flex;
 	justify-content: center;
@@ -78,9 +100,8 @@
 	color: rgb(240, 240, 240);
 }
 
-
 .CajaCarrito {
-	height: 320px;
+	height: 300px;
 	background-color: rgb(240, 240, 240);
 	overflow: auto;
 	padding-left: 10px;
@@ -88,17 +109,37 @@
 	border-radius: 10px;
 }
 
-.CajaAnimacionMostrarOcultar {
-	height: 415px;
-	background-color:  rgb(240, 240, 240);
-	border-radius: 10px;
-	z-index: 5;
-	display: none;
-	justify-content: center;
+#Barra-flotante{
+	background-color: none;
+	width: 100px;
+	height: 40px;
+	display: flex;
+	justify-content: space-between;
 	align-items: center;
-	position: absolute;
 }
 
+.Barra-flotante{
+	background-color: none;
+	width: 100px;
+	height: 40px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	z-index: 10;
+	top: 40px;
+}
+
+.SpinnerBuscador {
+	height: 500px;
+	border-radius: 5px;
+	background-color: black;
+}
+
+
+
+
+/*------------------------------------------ Spinner Carrito Inicio ------------------------------------------*/
 .sk-folding-cube {
 	margin: 20px auto;
 	width: 40px;
@@ -124,7 +165,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: #333;
+	background-color:#006efc;
 	-webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
 			animation: sk-foldCubeAngle 2.4s infinite linear both;
 	-webkit-transform-origin: 100% 100%;
@@ -186,3 +227,121 @@
 	  opacity: 0; 
 	}
   }
+  /*------------------------------------------ Spinner Carrito Fin------------------------------------------ */
+
+
+  /*------------------------------------------ Spinner Buscador Inicio ------------------------------------------*/
+  .spinner {
+	width: 40px;
+	height: 40px;
+	background-color: orange;
+  
+	margin: 100px auto;
+	-webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+	animation: sk-rotateplane 1.2s infinite ease-in-out;
+  }
+  
+  @-webkit-keyframes sk-rotateplane {
+	0% { -webkit-transform: perspective(120px) }
+	50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+	100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+  }
+  
+  @keyframes sk-rotateplane {
+	0% { 
+	  transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+	  -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+	} 50% { 
+	  transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+	  -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+	} 100% { 
+	  transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+	  -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+	}
+  }
+  /*------------------------------------------ Spinner Buscador Fin ------------------------------------------*/
+
+
+  /*------------------------------------------ Media Querys Pantallas ------------------------------------------*/
+  /* Extra small devices (phones, 600px and down) */
+  @media (min-width: 300px) and (max-width: 599px) {
+	.CajaCarrito {
+		height: 200px;
+		background-color: rgb(240, 240, 240);
+		overflow: auto;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-radius: 10px;
+	}
+
+	.LogoPrincipal{
+		width: 170px;
+		height: 100%;
+	}
+
+	#Indicador {
+		top: -5px;
+		right: 1px;
+	}
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media (min-width: 600px) and (max-width: 767px) {
+	.CajaCarrito {
+		height: 160px;
+		background-color: rgb(240, 240, 240);
+		overflow: auto;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-radius: 10px;
+	}
+  }	
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media (min-width: 768px) and (max-width: 800px) {
+	.CajaCarrito {
+		height: 200px;
+		background-color: rgb(240, 240, 240);
+		overflow: auto;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-radius: 10px;
+	}
+  }
+
+  /* Large devices (laptops/desktops, 800px and up) */
+  @media (min-width: 801px) and (max-width: 992px) {
+	.CajaCarrito {
+		height: 260px;
+		background-color: rgb(240, 240, 240);
+		overflow: auto;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-radius: 10px;
+	}
+  }
+
+  /* Extra large devices (large laptops and desktops, 992px and up) */
+  @media (min-width: 993px) and (max-width: 1200px) {
+	.CajaCarrito {
+		height: 260px;
+		background-color: rgb(240, 240, 240);
+		overflow: auto;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-radius: 10px;
+	}
+  }
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media (min-width: 1201px) and (max-width: 1366px) {
+	.CajaCarrito {
+		height: 260px;
+		background-color: rgb(240, 240, 240);
+		overflow: auto;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-radius: 10px;
+	}
+  }
+    /*------------------------------------------ Media Querys Fin ------------------------------------------*/

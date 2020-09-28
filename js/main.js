@@ -1,33 +1,58 @@
-//Para Colocar Boton Carrito de Compra flotante JQUERY Inicio
-
 $(document).ready(function(){
-    const Altura = $('#botonCarrito').offset().top;
+    //Para Colocar Boton Carrito de Compra flotante JQUERY Inicio
+    const Altura = $('#Barra-flotante').offset().top;
     $(window).on('scroll', function(){
         if ( $(window).scrollTop() > Altura){
-            $('#botonCarrito').addClass('botonCarrito');
+            $('#Barra-flotante').addClass('Barra-flotante');
             $('#Indicador').hide();
         }
         else {
-            $('#botonCarrito').removeClass('botonCarrito');
+            $('#Barra-flotante').removeClass('Barra-flotante');
             $('#Indicador').show();
         }
     });
+    //Para Colocar Boton Carrito de Compra flotante JQUERY Fin
+
+    //Para reproducir Audio en la web Inicio
+    const AudioPS4 = document.createElement("audio");
+    AudioPS4.src = "/audio/ps4-intro-theme-song.mp3";
+    AudioPS4.preload = true;
+    AudioPS4.volume = 0.4;
+    //AudioPS4.play();
+    AudioPS4.loop = true;
+    //Para reproducir Audio en la web Fin
+
+    //Para Mostrar u Ocultar Carrito de Compra JQUERY Inicio
+    $("#botonCarrito").click(function(){ 
+        $("#MostrarOcultarCarrito").show();
+        $("#botonCarrito").hide(); 
+    });
+    
+    $("#botonCerrar").click(function(){ 
+        $("#MostrarOcultarCarrito").hide();
+        $("#botonCarrito").show(); 
+    });
+    //Para Mostrar u Ocultar Carrito de Compra JQUERY Fin
+
+    //Para Mostrar u Ocultar botones de Audio JQUERY Inicio
+    $("#botonPause").click(function(){ 
+    $("#botonPause").removeClass('d-flex');
+    $("#botonPause").addClass('d-none');
+    $('#botonPlay').removeClass('d-none');
+    $('#botonPlay').addClass('d-flex');
+    AudioPS4.pause();
+    });
+
+    $("#botonPlay").click(function(){ 
+
+    $('#botonPlay').removeClass('d-flex');
+    $('#botonPlay').addClass('d-none');
+    $("#botonPause").removeClass('d-none');
+    $("#botonPause").addClass('d-flex');
+    AudioPS4.play();
+    });
+    //Para Mostrar u Ocultar botones de Audio JQUERY Fin
 });
-
-//Para Colocar Boton Carrito de Compra flotante JQUERY Fin
-
-//Para Mostrar u Ocultar Carrito de Compra JQUERY Inicio
-$("#botonCarrito").click(function(){ 
-    $("#MostrarOcultarCarrito").show();
-    $("#botonCarrito").hide(); 
-  });
-  
-$("#botonCerrar").click(function(){ 
-    $("#MostrarOcultarCarrito").hide();
-    $("#botonCarrito").show(); 
-});
-//Para Mostrar u Ocultar Carrito de Compra JQUERY Fin
-
 
 //Archivo JSON Inicio
 
@@ -74,25 +99,124 @@ var DataBaseJSON = `[
 //Archivo JSON Fin
 
 class Producto {
-    constructor(name, price, imgPath){
+    constructor(name, price, imgPath, stock = 35){
         this.name = name;
         this.price = price;
         this.imgPath = imgPath;
+        this.stock = stock;
     }
 }
 
 window.onload = () => {
+    
     let ObjetoDeJSON = JSON.parse(DataBaseJSON);
     let Productos = ObjetoDeJSON.map( Object => {
         return new Producto( Object.name, Object.price, Object.imgPath);
     });
     const ProductosContenedor = document.querySelector('.ProductosContenedor');
+
+    //const BuscadorArticulos = document.getElementById('BuscadorArticulos');
+    const BuscadorInput =  document.getElementById('BuscadorImput');
+    const BotonBuscar = document.getElementById('basic-text1');
     Productos.forEach( Producto => {
         ProductosContenedor.innerHTML += CrearProducto(Producto);
     });
+
+    // BuscadorArticulos.addEventListener('submit', event => {
+    //     event.preventDefault();
+        
+    //     let BuscadorValor = BuscadorInput.value;
+
+    //     let ProductosRenderizados = Productos.filter( producto => {
+    //         return producto.name.toLowerCase().includes(BuscadorValor.toLowerCase())
+    //     });
+    //     ProductosContenedor.innerHTML = '';
+    //     ProductosRenderizados.forEach(producto => {ProductosContenedor.innerHTML += CrearProducto(producto)});  
+    // });
+
+    BuscadorInput.addEventListener('input', event => {
+        event.preventDefault();
+        let BuscadorValor = BuscadorInput.value;
+        if(BuscadorValor.length > 3) {
+
+            ProductosContenedor.innerHTML = '';
+
+            //Creando Caragador Buscador Inicio
+            let SpinnerBuscador = document.createElement('div');
+            SpinnerBuscador.classList.add('col-12');
+            let SpinnerBuscadorCont = 
+            `<div class="col-12 d-flex justify-content-center align-items-center SpinnerBuscador">
+              <div class="spinner"></div>
+            </div>`;
+            SpinnerBuscador.innerHTML = SpinnerBuscadorCont;
+            ProductosContenedor.append(SpinnerBuscador);
+            //Creando Caragador Buscador Fin
+
+            setTimeout(() => {
+
+                let ProductosRenderizados = Productos.filter( producto => {
+                    return producto.name.toLowerCase().includes(BuscadorValor.toLowerCase())
+                });
+                ProductosContenedor.innerHTML = '';
+                ProductosRenderizados.forEach(producto => {ProductosContenedor.innerHTML += CrearProducto(producto)}); 
+
+            }, 500);
+            
+        } else {
+
+            ProductosContenedor.innerHTML = '';
+            //Creando Caragador Buscador Inicio
+            let SpinnerBuscador = document.createElement('div');
+            SpinnerBuscador.classList.add('col-12');
+            let SpinnerBuscadorCont = 
+            `<div class="col-12 d-flex justify-content-center align-items-center SpinnerBuscador">
+                <div class="spinner"></div>
+            </div>`;
+            SpinnerBuscador.innerHTML = SpinnerBuscadorCont;
+            ProductosContenedor.append(SpinnerBuscador);
+            //Creando Caragador Buscador Fin
+
+            setTimeout(() => {
+                ProductosContenedor.innerHTML = '';
+                Productos.forEach( Producto => {
+                    ProductosContenedor.innerHTML += CrearProducto(Producto);
+                });
+            }, 500);
+        }
+        
+    })
+
+
+    BotonBuscar.addEventListener('click', event => {
+        event.preventDefault();
+        let BuscadorValor = BuscadorInput.value;
+
+        ProductosContenedor.innerHTML = '';
+
+        //Creando Caragador Buscador Inicio
+        let SpinnerBuscador = document.createElement('div');
+        SpinnerBuscador.classList.add('col-12');
+        let SpinnerBuscadorCont = 
+        `<div class="col-12 d-flex justify-content-center align-items-center SpinnerBuscador">
+          <div class="spinner"></div>
+        </div>`;
+        SpinnerBuscador.innerHTML = SpinnerBuscadorCont;
+        ProductosContenedor.append(SpinnerBuscador);
+        //Creando Caragador Buscador Fin
+
+        setTimeout(() => {
+            let ProductosRenderizados = Productos.filter( producto => {
+                return producto.name.toLowerCase().includes(BuscadorValor.toLowerCase())
+            });
+            ProductosContenedor.innerHTML = '';
+            ProductosRenderizados.forEach(producto => {ProductosContenedor.innerHTML += CrearProducto(producto)});
+        }, 1000);
+    });
 };
 
-function CrearProducto (Producto) {
+
+
+function CrearProducto(Producto) {
 
         return `<div class="col-md-4 pb-4">
                     <div class="card" id="Articulo">
@@ -111,9 +235,12 @@ const ArticuloCarritoCotenedor = document.querySelector('#Articulo-carrito-conte
 const BorrarArticulosCarrito = document.querySelector('.Vaciar');
 const BontonDeCompraCarrito = document.querySelector('.ComprarBoton');
 let Contador = document.getElementById('Indicador');
-//Variables Globales Fin
 
 const spinner = document.querySelector('#CajaAnimacionMostrarOcultar');
+//Variables Globales Fin
+
+
+
     
 
 //Funcion Para Agregar Agregar Articulos al Carrito de Compra Inicio
@@ -123,10 +250,10 @@ BontonDeCompraCarrito.addEventListener('click', CompraCarrito );
 
 
 
+
 function BotonAgregarAlCarritoClickeado(event) {
     
     //Contador de Articulos Inicio
-    //let Contador = document.getElementById('Indicador');
     let ValorContador = Contador.innerHTML;
     Contador.innerHTML = parseInt(ValorContador) + 1;
     //Contador de Articulos Fin
@@ -185,7 +312,9 @@ function AgregarArticuloAlCarrito (TituloArticulo, PrecioArticulo, ImagenArticul
     FilaCarritoDeCompra.querySelector('#BotonBorrar').addEventListener('click', RemoverArticuloDelCarrito);
     FilaCarritoDeCompra.querySelector('#Cantidad').addEventListener('change', CambioDeCantidadDeArticulos );
     ActualizacionDelTotalCarritoDeCompra();
-    
+
+
+    AgregarArticulosLS(FilaCarritoDeCompra);
 }
 
 function ActualizacionDelTotalCarritoDeCompra() {
@@ -211,6 +340,7 @@ function RemoverArticuloDelCarrito(event){
     Contador.innerHTML = ContadorTemporal;
     BotonClickeado.closest('#Articulo-Carrito-compras').remove();
     ActualizacionDelTotalCarritoDeCompra();
+    RemoverArticulosLS();
 }
 
 function CambioDeCantidadDeArticulos(event) {
@@ -226,14 +356,33 @@ function CarritoVacio() {
     ArticuloCarritoCotenedor.innerHTML = '';
     Contador.innerHTML = '0';
     ActualizacionDelTotalCarritoDeCompra();
+    RemoverArticulosLS();
 }
 
 function CompraCarrito() {
-    ArticuloCarritoCotenedor.classList.remove('CajaCarrito');
-        ArticuloCarritoCotenedor.innerHTML = '';
-        Contador.innerHTML = '0';
-        ActualizacionDelTotalCarritoDeCompra();
-        swal('¡Gracias por su compra!', `Pronto recibirá su pedido`); 
+    
+    ArticuloCarritoCotenedor.innerHTML = '';
+    ArticuloCarritoCotenedor.style.cssText = 'display: flex; flex-direction: column; justify-content: center; align-items: center;';
+    let Spinner = document.createElement('div');
+    let SpinnerContenido = `
+        <div class="sk-folding-cube">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+        </div>`;
+
+    Spinner.innerHTML = SpinnerContenido;
+    ArticuloCarritoCotenedor.append(Spinner);
+        setTimeout(() => {
+            ArticuloCarritoCotenedor.innerHTML = '';
+            ArticuloCarritoCotenedor.style.cssText = 'display: block; flex-direction: none; justify-content: none; align-items: none;';
+            ArticuloCarritoCotenedor.classList.remove('CajaCarrito');
+            Contador.innerHTML = '0';
+            ActualizacionDelTotalCarritoDeCompra();
+            swal('¡Gracias por su compra!', `Pronto recibirá su pedido`); 
+        }, 5000);
+        
 }
 
 function OcultarCarrito() {
@@ -242,5 +391,26 @@ function OcultarCarrito() {
 }
 //Funcion Para Agregar Agregar Articulos al Carrito de Compra Fin
 
+//Local Storage Al momento de Agregar elemento al carrito Inicio
+function AgregarArticulosLS(Articulo){
+    name = Articulo.querySelector('#Titulo').textContent;
+    price = Articulo.querySelector('#Imagen').src;
+    imgPath = Articulo.querySelector('#Precio').textContent;
 
+    function PasarLS (name, price, imgPath){
 
+        this.name = name;
+        this.price = price;
+        this.imgPath = imgPath;
+
+    }
+    MiArticulo = new PasarLS (name, price, imgPath);
+    localStorage.setItem('Articulos-Carrito', JSON.stringify(MiArticulo));
+}
+//Local Storage Al momento de Agregar elemento al carrito Fin
+
+//Local Storage Al momento de remover elemento del carrito Inicio
+function RemoverArticulosLS(){
+    localStorage.clear();
+}
+//Local Storage Al momento deremover elemento del carrito Fin
